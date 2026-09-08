@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "orientation": "landscape-16:9",
+  "entry": "index.html",
+  "screens": ["menu", "map", "comic", "game", "pause", "mission-complete"],
+  "characterSources": {
+    "catpat": "book-faithful approved legacy Catpat art; 8-frame run clip",
+    "pitpit": "direct book-derived transparent master"
+  },
+  "catpatAnimation": {
+    "run": {"frames": 8, "fps": 10},
+    "jump": ["start", "air", "fall", "land"],
+    "pivot": "visible-feet-bottom"
+  },
+  "mission": {
+    "id": "pitpit-daisy-help",
+    "collectibles": 5,
+    "goal": "collect five daisies and reach route end"
+  },
+  "qa": {
+    "viewports": ["1280x720", "844x390"],
+    "pageErrors": 0,
+    "flow": "menu -> map -> comic -> game -> movement/jump -> pause"
+  }
+}
