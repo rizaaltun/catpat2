@@ -1,32 +1,50 @@
 # Catpat2 development status
 
-## v0.3 - book-faithful story + scale/platform/length revision
+## v0.3 - REJECTED BY USER / do not continue from this visual implementation
 
 Active developer: **ChatGPT**. Do not hand off to Claude unless the user explicitly asks. Work remains on `chatgpt/development`; do not merge to `main`, deploy, or touch Cloudflare/domain settings.
 
-### Implemented in the current tested playtest
+### Why v0.3 is rejected
 
-- Fixed Catpat's run/idle apparent scale mismatch. The approved eight run PNGs are normalized to the idle character's **406 px visible height** while keeping the common foot baseline at alpha `y=620`; poses remain the existing approved artwork rather than being redrawn.
-- Removed horizontally stretched platforms. The platform art is trimmed to real alpha bounds and rendered with its **natural source aspect ratio** (`height:auto`, `object-fit:contain`).
-- Expanded the first mission world to **9300 px**, with 18 modular platform pieces, real gaps, four named route sections and 12 collectible daisies. It no longer ends after a few seconds.
-- The first story sequence is now a four-panel comic-style flow. Its first two panels use exact crops from the supplied book's Pitpit daisy-garden scene; the dialogue uses the book-faithful green Catpat and Pitpit assets.
-- The incorrect generated celebration face with the wrong teeth is not used. The completion card uses an exact book crop of happy Catpat where the characteristic **single protruding tooth** is present.
-- Menu presentation was enriched with layered festival/lantern decoration while retaining the book-faithful Catpat sprite rather than the previously generated wrong face.
-- Quest HUD now tracks `0 / 12` through `12 / 12`; zone labels, checkpoints, pause/resume and keyboard/touch controls remain active.
+The technical fixes in v0.3 (run/idle scale normalization, non-stretched platforms, longer route) were useful, but the user rejected the overall result because the visual implementation still looked like a coded prototype instead of the previously approved professional mobile-game mockups. The main failure was process order: weak/reused scene pieces were arranged in code before creating the final scene artwork with the Image tool.
 
-### QA - 2026-09-08
+**Do not treat v0.3 as the visual baseline.** Do not keep polishing its menu, story panels, or level dressing. Preserve only the useful mechanical lessons: consistent character scale/pivot, natural platform aspect ratios, longer level duration, real gaps, and robust controls.
 
-The self-contained local playtest `Catpat2-v0.3-revizyon-test.html` was parsed as JavaScript and exercised in Chromium using its actual HTML contents at:
+## New production rule - image-first, integration-second
 
-- desktop `1280x720`
-- landscape mobile `844x390`
+For each screen or gameplay segment, use this order:
 
-Verified flow: menu -> level map -> story -> mission -> running -> jumping -> pause/resume. No page/console errors occurred in the QA run and neither viewport produced document overflow. The mission DOM contains 18 platform pieces and 12 daisies; the world width is 9300 px. Sample platform rendered aspect ratios matched their intrinsic image ratios and all tested pieces report `object-fit: contain`.
+1. Define the exact gameplay function and camera composition.
+2. Use the Image tool to create the actual high-quality game-ready visual pieces for that specific screen/segment.
+3. Keep Catpat and all story characters faithful to the supplied book. Poses may change, identity may not. Character face, proportions, colors, eye style, cheek marks and Catpat's characteristic single protruding tooth must remain consistent.
+4. Separate visual layers needed for interaction: background, foreground, platforms/terrain, props, HUD frames, buttons, dialogue panels, character art and effects.
+5. Only after the visual set is ready, integrate it into the playable game.
+6. Browser-test the integrated result on desktop and landscape mobile.
+7. If the integrated screen no longer resembles the approved art target, reject it instead of describing it as professional/final.
 
-Static sprite QA verified all eight run frames against `catpat_idle_00.png`: idle visible alpha bbox `(79,214)-(433,620)`, height 406; every run frame has visible height 406 and bottom alpha boundary 620. Current self-contained HTML SHA256: `e7027051007f3859e5eb49f9a092f7a4a2347eeb572e937a9ce301aad530f390`.
+## Approved visual target
 
-### Delivery truth / remaining work
+The user approved the rich storybook/mobile-game concept boards generated in chat: lush illustrated forest scenes, warm lantern/festival lighting, layered parchment/wood UI, large expressive scene composition, illustrated level map, comic-style story panels, integrated HUD, illustrated pause menu, companion/festival progression and visually coherent gameplay backgrounds.
 
-The v0.3 playtest is a tested local artifact provided to the user, but the full self-contained HTML and all binary assets are **not yet fully committed to GitHub**. Do not describe the GitHub game delivery as complete until the real playable source and binary image files are present on this branch.
+The visual target is **not** a plain HTML/CSS card UI placed over old gameplay art. Menus, story scenes and gameplay environments should themselves feel illustrated and authored.
 
-This is still a development milestone, not the finished game. The user's visual target is the rich professional storybook/mobile-game concept language previously approved. The current route still needs additional scene-specific Image-produced backgrounds/foregrounds, richer level staging, full companion animation sets, sound/music, save/accessibility UI, later missions and the festival endgame. Future art must keep book character identity exact; poses may change, but character face/proportions/tooth and species details must not drift.
+## Next rebuild sequence
+
+Rebuild in small quality-controlled slices:
+
+1. Main menu - final illustrated 16:9 composition using book-faithful Catpat, independent clickable button layers and effects.
+2. Story intro - comic layout using book-faithful character artwork, not generated substitute characters.
+3. Level map - illustrated forest/festival route with interactive stage markers.
+4. Chapter 1 environment kit - Image-produced background, midground, foreground, terrain/platform modules, route landmarks and props designed as one coherent scene family.
+5. Chapter 1 gameplay - integrate the environment kit while preserving the corrected scale/pivot and longer route.
+6. Chapter 1 mission dialogue/completion - illustrated quest panels and recruited-friend state.
+7. Pause/settings/friends screens - same illustrated UI family.
+8. Only then proceed to later friends, chapters and festival finale.
+
+### Book fidelity
+
+The supplied book remains the character source of truth. Exact book crops may be used as reference and temporary validation material, but final interactive character sprites/story poses should be newly prepared game assets that preserve the book design. Do not introduce raccoon/dog/acorn/hedgehog-like substitute versions of Catpat.
+
+### Delivery truth
+
+No current Catpat2 playtest is accepted as the professional visual baseline. v0.3 remains a rejected experiment. The next user-facing playable build should only be presented after at least the rebuilt main menu + story + one gameplay scene have been integrated from Image-produced assets and visually reviewed against the approved concept target.
