@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "agent": "catpat-production-qa",
+  "mode": "bootstrap",
+  "canonical": {
+    "catpatCanvas": [512, 640],
+    "catpatPivot": [256, 620],
+    "requireRgbaPng": true,
+    "rejectDuplicateFrames": true,
+    "rejectSpriteSheetsAsCanonicalSource": true,
+    "rejectGeneratedCharacterReinterpretation": true
+  },
+  "animationTargets": {
+    "idle": 8,
+    "run": 8,
+    "jump": 8,
+    "fall": 4,
+    "land": 4,
+    "celebrate": 8,
+    "talk_react": 6
+  },
+  "ui": {
+    "imageFirst": true,
+    "finishedCodedPanelsForbidden": true,
+    "staticTextShouldBeEmbeddedInArt": true,
+    "dynamicTextRequiresAuthoredFrame": true
+  },
+  "gameplay": {
+    "requireVisibleSurfaceColliderMatch": true,
+    "groundContactTolerancePx": 2,
+    "mandatoryHazardsRequireMovementEnvelope": true,
+    "noStretchedTerrain": true,
+    "rejectGreenOnGreenPlayerLane": true
+  },
+  "delivery": {
+    "canonicalAssetMustExistInGit": true,
+    "manifestMustReferenceCanonicalPath": true,
+    "localOnlyDoesNotCountAsDelivered": true,
+    "orphanBlobDoesNotCountAsDelivered": true
+  },
+  "severity": {
+    "P0": "broken flow, soft-lock, impossible mandatory obstacle, missing critical runtime asset",
+    "P1": "character drift, fake frame duplication, floating contact, coded final UI, unreadable comic/UI",
+    "P2": "polish defect, minor seam, timing mismatch, secondary overlap"
+  }
+}
