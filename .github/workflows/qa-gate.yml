@@ -1,0 +1,60 @@
+name: Catpat Production QA Gate
+
+on:
+  push:
+    branches:
+      - chatgpt/development
+    paths:
+      - 'assets/**'
+      - 'qa/**'
+      - 'manifest.json'
+      - '.github/workflows/qa-gate.yml'
+  workflow_dispatch:
+
+jobs:
+  production-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install QA dependencies
+        run: python -m pip install --disable-pip-version-check pillow
+
+      - name: Validate QA policy
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('qa/qa-agent-policy.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          assert data['canonical']['catpatCanvas'] == [512, 640]
+          assert data['canonical']['catpatPivot'] == [256, 620]
+          assert data['canonical']['requireRgbaPng'] is True
+          assert data['canonical']['rejectDuplicateFrames'] is True
+          assert data['ui']['imageFirst'] is True
+          assert data['ui']['finishedCodedPanelsForbidden'] is True
+          assert data['gameplay']['mandatoryHazardsRequireMovementEnvelope'] is True
+          print('QA policy: PASS')
+          PY
+
+      - name: Audit canonical assets when present
+        run: |
+          if [ -d assets/characters ]; then
+            python qa/qa_agent.py assets/characters
+          else
+            echo 'No canonical character asset tree yet; policy bootstrap only.'
+          fi
+
+      - name: Upload QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: catpat-qa-report
+          path: qa/last-report.json
+          if-no-files-found: ignore
