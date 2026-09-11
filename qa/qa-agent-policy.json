@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "agent": "catpat-production-qa",
-  "mode": "bootstrap",
+  "mode": "book-grounded-production-gate",
   "canonical": {
     "catpatCanvas": [512, 640],
     "catpatPivot": [256, 620],
@@ -9,6 +9,28 @@
     "rejectDuplicateFrames": true,
     "rejectSpriteSheetsAsCanonicalSource": true,
     "rejectGeneratedCharacterReinterpretation": true
+  },
+  "bookFidelity": {
+    "sourceTitle": "Çatpat Nezaketi Öğreniyor",
+    "registry": "qa/book-character-registry.json",
+    "wholeBookReviewed": true,
+    "sideCharactersMustExistInBook": true,
+    "unknownCharacterRequiresExplicitUserApproval": true,
+    "inventedPlayableCharactersForbidden": true,
+    "compareFields": [
+      "species-role",
+      "silhouette",
+      "proportions",
+      "face-construction",
+      "eye-shape-spacing",
+      "muzzle-beak-ears",
+      "palette-markings",
+      "clothing-accessories",
+      "relative-scale",
+      "emotional-acting",
+      "rendering-language"
+    ],
+    "bookEvidenceRequiredBeforePromotion": true
   },
   "animationTargets": {
     "idle": 8,
@@ -40,7 +62,7 @@
   },
   "severity": {
     "P0": "broken flow, soft-lock, impossible mandatory obstacle, missing critical runtime asset",
-    "P1": "character drift, fake frame duplication, floating contact, coded final UI, unreadable comic/UI",
+    "P1": "character drift, non-book playable character, fake frame duplication, floating contact, coded final UI, unreadable comic/UI",
     "P2": "polish defect, minor seam, timing mismatch, secondary overlap"
   }
 }
