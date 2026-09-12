@@ -7,6 +7,7 @@ on:
     paths:
       - 'app.js'
       - 'index.html'
+      - 'patches/**'
       - 'assets/**'
       - 'qa/**'
       - 'docs/studio/**'
@@ -65,6 +66,10 @@ jobs:
         continue-on-error: true
         run: python qa/v06_runtime_gate.py
 
+      - name: Measure v0.6 route envelope
+        continue-on-error: true
+        run: python qa/v06_route_gate.py
+
       - name: Upload QA reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -73,5 +78,6 @@ jobs:
           path: |
             qa/last-report.json
             qa/v06-runtime-last-report.json
+            qa/v06-route-last-report.json
             qa/V06_BASELINE_AUDIT.json
           if-no-files-found: warn
