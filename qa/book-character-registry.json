@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "title": "Çatpat Nezaketi Öğreniyor",
+    "reviewScope": "full 12-PDF-page / 22-interior-page review",
+    "rule": "Named runtime characters require book evidence before canonical promotion."
+  },
+  "characters": {
+    "catpat": {
+      "name": "Çatpat",
+      "status": "verified-primary",
+      "pdfPages": [2,3,4,5,6,7,8,9,10,11],
+      "identity": ["emerald green child character", "large white eyes", "coral cheeks/nose", "peach belly", "yellow rounded crest", "red boots", "characteristic protruding tooth", "soft painterly children's-book rendering"]
+    },
+    "maymun": {
+      "name": "Maymun",
+      "status": "verified-recurring-friend",
+      "pdfPages": [4,10],
+      "storyEvidence": "Builds/plays a branch game with Porsuk, politely invites Çatpat, and appears in the later reflection on a polite response.",
+      "identity": ["warm brown monkey", "large rounded pink inner ears", "light beige muzzle/belly", "coral cheeks", "thin curved tail", "large black-and-white eyes"]
+    },
+    "porsuk": {
+      "name": "Porsuk",
+      "status": "verified-recurring-friend",
+      "pdfPages": [4,10],
+      "storyEvidence": "Plays the branch game with Maymun and reacts to Çatpat's rude rejection; appears again in the reflection scene.",
+      "identity": ["dark charcoal body", "broad pale gray face stripe", "pink inner ears", "coral cheeks", "long pointed snout with black nose", "large black-and-white eyes"]
+    },
+    "pitpit": {
+      "name": "Pıtpıt",
+      "role": "Tavşan",
+      "status": "verified-recurring-friend",
+      "pdfPages": [5,10],
+      "storyEvidence": "Carefully selects daisies for their mother; Çatpat rushes through the garden and damages it; later the book states Çatpat could have passed carefully.",
+      "identity": ["warm gray-brown rabbit", "very large upright ears", "coral/pink inner ears", "coral cheeks", "small peach-pink nose", "white whiskers", "large eyes with eyelashes", "short rounded tail"]
+    },
+    "market_cashier": {
+      "name": "Market kasiyeri",
+      "role": "Mor su aygırı",
+      "status": "verified-secondary",
+      "pdfPages": [6],
+      "storyEvidence": "Cashier in the market scene where Çatpat's behavior affects the queue.",
+      "identity": ["purple hippo", "large rounded muzzle", "small ears", "retail/cashier role"]
+    },
+    "tilki_queue": {
+      "name": "Tilki",
+      "status": "verified-background-secondary",
+      "pdfPages": [6]
+    }
+  },
+  "replacementRequiredLegacy": {
+    "baykus": {
+      "name": "Baykuş",
+      "reason": "not verified as a named runtime character in the reviewed source book",
+      "runtimeStatus": "replacement-required"
+    },
+    "civciv": {
+      "name": "Civciv",
+      "reason": "not verified as a named runtime character in the reviewed source book; do not infer identity from the presence of a pink bird",
+      "runtimeStatus": "replacement-required"
+    }
+  }
+}
