@@ -20,6 +20,27 @@ drawStory = function drawStoryV07() {
   textFit('‹',65,56,48,48,34,'#fff',800);
 };
 
+// The exact v0.6 route contains four transitions below the 15% horizontal
+// mobile-safety reserve target. Move existing platforms; never stretch their art.
+// Checkpoints, daisies, solids and the festival endpoint remain on valid surfaces.
+const routeXOverrides=Object.freeze({
+  p8:4180,
+  p9:4820,
+  p10:5240,
+  p11:5650,
+  p12:6270,
+  p13:6700,
+  p14:7340,
+  p15:7760,
+  p16:8410
+});
+for(const platform of platforms){
+  if(Object.prototype.hasOwnProperty.call(routeXOverrides,platform.id)){
+    platform.x=routeXOverrides[platform.id];
+    if(platform.moving) platform.base=routeXOverrides[platform.id];
+  }
+}
+
 // The exact v0.6 thorn at x=2500 was reported as practically impassable by the user.
 // The theoretical jump envelope is not enough evidence to keep a mandatory hazard.
 // Remove it from the working mandatory route until measured landscape-mobile QA and
@@ -43,6 +64,7 @@ drawMenu = function drawMenuV07() {
 window.__CATPAT_V07_PATCH__={
   baseline:'Catpat2 v0.6',
   storyBackgroundFallback:'bg1',
+  routeXOverrides:{...routeXOverrides},
   legacyThornRemovedFromMandatoryRoute:legacyThornIndex>=0,
   unverifiedMenuCharactersHidden:['baykus','civciv']
 };
