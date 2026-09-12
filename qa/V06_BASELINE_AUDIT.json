@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "Catpat2 v0.6",
+    "sourceArchive": "Catpat2-v0.6-source.zip",
+    "sourceArchiveSha256": "60bfe61f97aa47ce1bfbb61aa13e32fdcdafa1db1d8372fe63ef9020e1867dab",
+    "fileCount": 101,
+    "pngCount": 94,
+    "unpackedBytes": 40977489
+  },
+  "animation": {
+    "idle": {
+      "files": 8,
+      "uniqueSha256": 4,
+      "duplicateGroups": [
+        ["catpat_idle_00.png", "catpat_idle_04.png", "catpat_idle_06.png"],
+        ["catpat_idle_01.png", "catpat_idle_03.png", "catpat_idle_07.png"]
+      ],
+      "status": "REPLACEMENT_REQUIRED"
+    },
+    "run": {
+      "files": 8,
+      "uniqueSha256": 8,
+      "status": "ACCEPTED_BASELINE_PENDING_VISUAL_RECHECK"
+    },
+    "jump": {
+      "files": 8,
+      "uniqueSha256": 8,
+      "status": "LEGACY_NOT_FINAL_AUTHORED_POSES"
+    },
+    "celebrate": {
+      "files": 8,
+      "uniqueSha256": 7,
+      "duplicateGroups": [["catpat_celebrate_01.png", "catpat_celebrate_07.png"]],
+      "status": "REPLACEMENT_REQUIRED"
+    }
+  },
+  "runtime": {
+    "bookExternalReferences": {
+      "baykus": 3,
+      "civciv": 3
+    },
+    "thorn": {
+      "present": true,
+      "runtimeX": 2500,
+      "runtimeWidth": 82,
+      "sourceSize": [373, 197],
+      "approxRuntimeHeight": 43.31,
+      "status": "PRACTICAL_TRAVERSAL_QA_REQUIRED"
+    },
+    "physics": {
+      "jumpVelocity": 625,
+      "gravity": 1650,
+      "runSpeed": 270,
+      "theoreticalApexPx": 118.37,
+      "theoreticalAirTimeSec": 0.758,
+      "theoreticalHorizontalReachPx": 204.55
+    },
+    "codedFinalUiEvidence": {
+      "roundedPanelCalls": 16,
+      "fillRectCalls": 6,
+      "textFitCalls": 21,
+      "status": "REPLACEMENT_REQUIRED_FOR_FINAL_UI"
+    }
+  },
+  "gate": {
+    "status": "REPLACEMENT_REQUIRED",
+    "blocking": [
+      "P1 IDLE_DUPLICATES: 8 files contain only 4 unique idle images",
+      "P1 CELEBRATE_DUPLICATE: 8 files contain only 7 unique celebrate images",
+      "P1 BOOK_EXTERNAL_CAST: Baykuş/Civciv runtime references are not verified named characters in the book",
+      "P1 CODED_FINAL_UI: finished-looking HUD/pause/map panels are still drawn in canvas code",
+      "P1 JUMP_CELEBRATE_PROVENANCE: legacy sequences are not accepted as genuinely authored final animation"
+    ],
+    "notes": [
+      "Run frames are 8/8 unique.",
+      "Raw platform gaps are inside the theoretical jump envelope, but touch-margin and hazard feasibility still require runtime QA.",
+      "The thorn exists in the exact Catpat2 v0.6 source; it must not be treated as absent.",
+      "This audit is for Catpat2 v0.6 only; catpat-game findings are not substituted into this baseline."
+    ]
+  }
+}
