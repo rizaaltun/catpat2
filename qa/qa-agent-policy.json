@@ -1,22 +1,42 @@
 {
-  "schemaVersion": 2,
-  "agent": "catpat-production-qa",
-  "mode": "book-grounded-production-gate",
+  "schemaVersion": 3,
+  "agent": "catpat2-production-qa",
+  "mode": "transactional-book-grounded-v06-gate",
+  "productionTarget": {
+    "repository": "rizaaltun/catpat2",
+    "branch": "chatgpt/development",
+    "baseline": "Catpat2 v0.6",
+    "baselineAudit": "qa/V06_BASELINE_AUDIT.json",
+    "forbiddenProductionRepository": "rizaaltun/catpat-game"
+  },
+  "runPolicy": {
+    "afterMeaningfulAssetBatch": true,
+    "afterIntegrationStep": true,
+    "beforeCanonicalPromotion": true,
+    "beforeCommit": true,
+    "hourlyQa": false
+  },
   "canonical": {
     "catpatCanvas": [512, 640],
     "catpatPivot": [256, 620],
-    "requireRgbaPng": true,
+    "requireRgbaPngForCharacterFrames": true,
     "rejectDuplicateFrames": true,
     "rejectSpriteSheetsAsCanonicalSource": true,
-    "rejectGeneratedCharacterReinterpretation": true
+    "rejectGeneratedCharacterReinterpretation": true,
+    "leftDirectionPolicy": "exact-runtime-horizontal-mirror"
   },
   "bookFidelity": {
     "sourceTitle": "Çatpat Nezaketi Öğreniyor",
     "registry": "qa/book-character-registry.json",
     "wholeBookReviewed": true,
     "sideCharactersMustExistInBook": true,
-    "unknownCharacterRequiresExplicitUserApproval": true,
     "inventedPlayableCharactersForbidden": true,
+    "incorrectCharacterIdentityIsBlocking": true,
+    "unknownCharacterStatus": "replacement-required",
+    "bookExternalCharacterStatus": "replacement-required",
+    "replacementMustUseVerifiedBookCharacter": true,
+    "replacementMustIncludeBookEvidenceBeforeRuntimePromotion": true,
+    "doNotKeepRejectedCharacterAsTemporaryFinal": true,
     "compareFields": [
       "species-role",
       "silhouette",
@@ -32,14 +52,20 @@
     ],
     "bookEvidenceRequiredBeforePromotion": true
   },
+  "storyFidelity": {
+    "inventedMissionFinalizationForbidden": true,
+    "bookEventEvidenceRequired": true,
+    "incorrectButBookFaithfulCharacterInInventedEventStillBlocksFinal": true,
+    "replacementRequiredExamples": ["baykus runtime slot", "civciv runtime slot", "non-book mission events"]
+  },
   "animationTargets": {
     "idle": 8,
     "run": 8,
-    "jump": 8,
+    "jumpRiseApex": 6,
     "fall": 4,
     "land": 4,
     "celebrate": 8,
-    "talk_react": 6
+    "talkReact": 6
   },
   "ui": {
     "imageFirst": true,
@@ -50,19 +76,22 @@
   "gameplay": {
     "requireVisibleSurfaceColliderMatch": true,
     "groundContactTolerancePx": 2,
-    "mandatoryHazardsRequireMovementEnvelope": true,
+    "mandatoryHazardsRequireMeasuredMovementEnvelope": true,
+    "mandatoryHazardsRequirePracticalTouchQa": true,
     "noStretchedTerrain": true,
-    "rejectGreenOnGreenPlayerLane": true
+    "rejectGreenOnGreenPlayerLane": true,
+    "currentV06ThornRequiresExplicitQa": true
   },
   "delivery": {
     "canonicalAssetMustExistInGit": true,
     "manifestMustReferenceCanonicalPath": true,
     "localOnlyDoesNotCountAsDelivered": true,
-    "orphanBlobDoesNotCountAsDelivered": true
+    "orphanBlobDoesNotCountAsDelivered": true,
+    "rejectedAssetsMustNotBeReferencedByRuntime": true
   },
   "severity": {
     "P0": "broken flow, soft-lock, impossible mandatory obstacle, missing critical runtime asset",
-    "P1": "character drift, non-book playable character, fake frame duplication, floating contact, coded final UI, unreadable comic/UI",
+    "P1": "character drift, book-external or incorrect character, invented final mission, fake frame duplication, transform-faked final pose, floating contact, coded final UI, unreadable comic/UI",
     "P2": "polish defect, minor seam, timing mismatch, secondary overlap"
   }
 }
