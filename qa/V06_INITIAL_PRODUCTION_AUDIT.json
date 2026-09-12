@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "baseline": "Catpat2 v0.6",
+  "sourceArchiveSha256": "60bfe61f97aa47ce1bfbb61aa13e32fdcdafa1db1d8372fe63ef9020e1867dab",
+  "mobileTestSha256": "81e6cd0a5e4170dc3441c05d9dfd636a436796809f654358ab267638e4d016d4",
+  "auditStatus": "PRODUCTION_MIGRATION_REQUIRED",
+  "runtime": {
+    "sourceFilesObserved": 102,
+    "imageFilesObserved": 94,
+    "browserQa": "not claimed for the original v0.6 baseline"
+  },
+  "bookFidelity": {
+    "blockingFindings": [
+      {
+        "severity": "P1",
+        "id": "book-external-menu-cast",
+        "finding": "v0.6 app.js references Baykuş and Civciv in the menu cast",
+        "action": "replace with book-verified cast; do not keep as final placeholders"
+      },
+      {
+        "severity": "P1",
+        "id": "book-canon-mission-rebuild",
+        "finding": "v0.6 gameplay is centered on Pıtpıt/daisy collection rather than the locked multi-event book-canon mission plan",
+        "action": "retain playable baseline while migrating to Maymun+Porsuk branch-game, market queue, and Pıtpıt daisy-garden events"
+      }
+    ]
+  },
+  "hazards": {
+    "thorn": {
+      "presentInRuntime": true,
+      "runtimeReference": "app.js hazards: thorn at x=2500, bottom=505, width=82",
+      "staticQa": "the baseline report calculates it as vertically clearable",
+      "productionDecision": "must be revalidated in actual playable traversal; static apex math alone is not sufficient because the user previously reported an impassable thorn"
+    },
+    "wheel": {
+      "presentInRuntime": true,
+      "runtimeReference": "patrolling spike wheel at x=4480 with amplitude 85"
+    }
+  },
+  "animation": {
+    "canvas": [512, 640],
+    "pivot": [256, 620],
+    "idle": {"files": 8, "uniqueSha256": 4, "status": "REJECT_AS_FINAL_DUPLICATE_PADDED"},
+    "run": {"files": 8, "uniqueSha256": 8, "status": "ACCEPT_BASELINE_PENDING_VISUAL_CADENCE_QA"},
+    "jump": {"files": 8, "uniqueSha256": 8, "status": "UNIQUE_HASHES_BUT_REQUIRES_AUTHORED_POSE_VISUAL_QA"},
+    "celebrate": {"files": 8, "uniqueSha256": 7, "status": "REJECT_AS_FINAL_DUPLICATE_PRESENT"},
+    "productionRule": "hash uniqueness is necessary but not sufficient; frames must also be genuinely authored poses preserving canonical identity"
+  },
+  "ui": {
+    "status": "IMAGE_FIRST_MIGRATION_REQUIRED",
+    "codedFinalVisualsFound": [
+      "roundRect/fillRect generated title and stage labels",
+      "coded lock icons",
+      "coded story navigation buttons",
+      "coded HUD panels and touch controls",
+      "coded pause panel",
+      "coded completion panel"
+    ],
+    "rule": "finished visual panels/buttons/titles must migrate to authored image assets; runtime may retain hitboxes, state and dynamic values"
+  },
+  "platformContact": {
+    "baselineHasCalibratedSurfaceRows": true,
+    "productionRule": "preserve visual/physics surface agreement and re-run contact QA after every platform-art change"
+  },
+  "nextGates": [
+    "promote exact v0.6 runtime source/assets into rizaaltun/catpat2 canonical paths",
+    "replace Baykuş/Civciv and other book-external runtime content",
+    "rebuild idle and celebrate with genuinely unique authored frames",
+    "visually revalidate jump poses and thorn traversal",
+    "migrate coded final UI to image-authored assets",
+    "run transactional QA before each promotion"
+  ]
+}
