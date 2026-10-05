@@ -63,7 +63,6 @@ jobs:
           fi
 
       - name: Audit v0.6 runtime migration
-        continue-on-error: true
         run: python qa/v06_runtime_gate.py
 
       - name: Measure v0.6 route envelope
