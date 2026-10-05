@@ -4,7 +4,7 @@ const A={
   mapBg:'assets/ui/chapter_map.png',
   bg1:'assets/backgrounds/scene_01_warm_festival.png', bg2:'assets/backgrounds/scene_02_river.png',
   bg3:'assets/backgrounds/scene_03_waterfall.png', bg4:'assets/backgrounds/scene_04_festival_approach.png',
-  pitpit:'assets/friends/pitpit.png', porsuk:'assets/friends/porsuk_happy.png', baykus:'assets/friends/baykus_happy.png', civciv:'assets/friends/civciv_happy.png',
+  // Book-verified runtime cast only. Maymun will be wired after canonical sprite production.\n  pitpit:'assets/friends/pitpit.png', porsuk:'assets/friends/porsuk_happy.png',
   daisy:'assets/characters/daisy.png',
   storyGarden:'assets/story/story_garden.png', storyTrampled:'assets/story/story_trampled.png', storyHappy:'assets/story/story_catpat_happy_book.png',
   pShort:'assets/platforms/short.png', pMedium:'assets/platforms/medium.png', pLong:'assets/platforms/long.png',
@@ -114,7 +114,7 @@ function drawMenu(){
  ctx.save();shadow(.20,18,6);contain(I.logo,355,18,610,205);ctx.restore();
  // Only canonical/reused game characters are shown. No invented menu-only substitutes.
  ctx.save();shadow(.22,14,5);drawSprite('idle0',245,650,1,350);ctx.restore();
- ctx.save();shadow(.18,10,4);contain(I.pitpit,515,397,150,215);contain(I.porsuk,650,430,150,165);contain(I.baykus,805,420,150,170);contain(I.civciv,965,435,130,155);ctx.restore();
+ ctx.save();shadow(.18,10,4);contain(I.pitpit,575,397,170,225);contain(I.porsuk,770,420,170,185);ctx.restore();
  ctx.save();shadow(.28,16,6);contain(pressed?I.playPressed:I.playNormal,playRect.x,playRect.y,playRect.w,playRect.h);ctx.restore();
 }
 function drawLock(cx,cy){ctx.save();ctx.strokeStyle='#fff7da';ctx.fillStyle='rgba(31,42,36,.82)';ctx.lineWidth=4;ctx.beginPath();ctx.arc(cx,cy-8,18,Math.PI,0);ctx.stroke();rr(cx-24,cy-8,48,39,8,'rgba(31,42,36,.88)','#fff7da',3);ctx.restore()}
@@ -130,7 +130,7 @@ function drawMap(){
  });
  rr(24,22,66,66,33,'rgba(62,43,28,.78)','rgba(255,226,155,.9)',3);textFit('‹',57,52,44,54,40,'#fff8e4',800);
 }
-function drawStory(){cover(I.gameBg);ctx.fillStyle='rgba(17,29,28,.32)';ctx.fillRect(0,0,V.w,V.h);const im=storyPage===0?I.storyGarden:storyPage===1?I.storyTrampled:I.storyHappy;ctx.save();shadow(.4,28,8);contain(im,150,34,980,650);ctx.restore();rr(1120,590,98,78,39,'rgba(242,174,49,.96)','rgba(255,242,193,.95)',3);textFit(storyPage<2?'›':'▶',1169,628,62,42,30,'#3a2417',800);rr(28,28,74,58,29,'rgba(47,38,25,.76)','rgba(255,225,149,.85)',3);textFit('‹',65,56,48,48,34,'#fff',800)}
+function drawStory(){cover(I.bg1);ctx.fillStyle='rgba(17,29,28,.32)';ctx.fillRect(0,0,V.w,V.h);const im=storyPage===0?I.storyGarden:storyPage===1?I.storyTrampled:I.storyHappy;ctx.save();shadow(.4,28,8);contain(im,150,34,980,650);ctx.restore();rr(1120,590,98,78,39,'rgba(242,174,49,.96)','rgba(255,242,193,.95)',3);textFit(storyPage<2?'›':'▶',1169,628,62,42,30,'#3a2417',800);rr(28,28,74,58,29,'rgba(47,38,25,.76)','rgba(255,225,149,.85)',3);textFit('‹',65,56,48,48,34,'#fff',800)}
 function drawGameBg(){
  const bgKeys=['bg1','bg2','bg1','bg4'];
  const seg=2200,idx=Math.min(3,Math.floor(camera/seg)),t=Math.min(1,(camera%seg)/(seg*.72));
