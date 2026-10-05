@@ -1,20 +1,31 @@
 {
-  "version": "0.5",
+  "version": "0.6-recovery",
+  "baseline": "Catpat2 v0.6",
   "virtual_canvas": [1280, 720],
-  "sprite_canvas": [360, 360],
-  "sprite_foot_anchor": [180, 348],
+  "sprite_canvas": [512, 640],
+  "sprite_foot_anchor": [256, 620],
   "animation": {
-    "run": {"frames": 8, "fps": 11},
-    "jump": {"frames": 8, "fps": 10},
-    "celebrate": {"frames": 8, "fps": 9}
+    "idle": {"frames": 8, "fps": 8, "status": "replacement-required-duplicates"},
+    "run": {"frames": 8, "fps": 11, "status": "accepted-baseline-pending-book-fidelity-recheck"},
+    "jump": {"frames": 8, "fps": 10, "status": "legacy-not-final-authored"},
+    "celebrate": {"frames": 8, "fps": 9, "status": "replacement-required"}
   },
   "physics": {
-    "player_half_width": 32,
-    "player_height": 116,
-    "platform_visual_contact_overlap_px": 3
+    "player_half_width": 34,
+    "player_height": 126,
+    "platform_visual_contact_overlap_px": 2
+  },
+  "book_canon": {
+    "primary": ["catpat"],
+    "verified_companions": ["pitpit", "porsuk", "maymun"],
+    "verified_secondary": ["market_cashier"],
+    "replacement_required_legacy": ["baykus", "civciv"]
   },
   "notes": [
-    "Platform sprites are alpha-trimmed; collision top is authored explicitly and matches rendered top surface.",
-    "Left movement mirrors the same anchored run frames so size and foot position cannot shift."
+    "Canonical Catpat character frames are RGBA PNGs on a 512x640 canvas with foot pivot at 256,620.",
+    "Left movement mirrors the same anchored right-facing frames; mirrored files are not separate authored frames.",
+    "Recovered v0.6 character frames remain baseline evidence, not automatic final art.",
+    "Idle and celebrate families must be replaced with genuinely unique book-faithful authored frames before production acceptance.",
+    "Platform sprites are alpha-trimmed; collision top is authored explicitly and must match the rendered contact surface."
   ]
 }
