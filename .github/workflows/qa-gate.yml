@@ -66,6 +66,7 @@ jobs:
         run: python qa/v06_runtime_gate.py
 
       - name: Measure v0.6 route envelope
+        if: always()
         continue-on-error: true
         run: python qa/v06_route_gate.py
 
