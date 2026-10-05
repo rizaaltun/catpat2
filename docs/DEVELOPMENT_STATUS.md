@@ -79,3 +79,12 @@ Next production work:
 8. validate the quarantined v0.6 thorn and route against practical touch-control margins before retain/resize/replace decisions.
 
 Do not merge to `main`, deploy, or change Cloudflare/domain settings without explicit user authorization. Do not show rejected visual experiments to the user.
+
+## Latest transactional production batch
+- Root `manifest.json` was corrected so the recovered v0.6 Pıtpıt-only daisy route is explicitly recovery-only, not the final canonical mission.
+- Added the machine-readable book-grounded event graph: Maymun+Porsuk branch game, Pıtpıt daisy garden, market queue, and festival progression framing.
+- Added `qa/book_event_gate.py` and wired it into CI. The gate rejects missing canon nodes, unverified event cast, Baykuş/Civciv re-entry, missing book evidence, and accidental promotion of the legacy mission as final.
+- Added `docs/BOOK_CANON_EVENT_GRAPH.md` so narrative migration decisions are reviewable beside the character registry.
+- Local deterministic gate test passed against the expected registry keys.
+- Existing hard P0 remains unchanged: canonical PNG binaries are still absent from Git paths, so no new character art is promoted and the runtime fidelity gate must continue to reject.
+- Final Catpat/companion visual acceptance still requires direct page-level visual comparison to the private book source; do not infer final identity solely from textual registry fields.

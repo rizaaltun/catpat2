@@ -58,6 +58,9 @@ jobs:
           print('Catpat2 v0.6 QA policy: PASS')
           PY
 
+      - name: Validate book-canon event graph
+        run: python qa/book_event_gate.py
+
       - name: Audit canonical character assets when present
         run: |
           if [ -d assets/characters ]; then
@@ -81,6 +84,7 @@ jobs:
           name: catpat2-qa-${{ github.sha }}
           path: |
             qa/last-report.json
+            qa/book-event-last-report.json
             qa/v06-runtime-last-report.json
             qa/v06-route-last-report.json
             qa/V06_BASELINE_AUDIT.json

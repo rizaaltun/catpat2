@@ -1,25 +1,79 @@
 {
-  "version": "0.2.0",
+  "version": "0.7-production-migration",
+  "baseline": {
+    "name": "Catpat2 v0.6",
+    "sourceArchiveSha256": "60bfe61f97aa47ce1bfbb61aa13e32fdcdafa1db1d8372fe63ef9020e1867dab",
+    "role": "recovery-runtime-baseline-not-automatic-final-art"
+  },
   "orientation": "landscape-16:9",
   "entry": "index.html",
   "screens": ["menu", "map", "comic", "game", "pause", "mission-complete"],
-  "characterSources": {
-    "catpat": "book-faithful approved legacy Catpat art; 8-frame run clip",
-    "pitpit": "direct book-derived transparent master"
+  "production": {
+    "repository": "rizaaltun/catpat2",
+    "branch": "chatgpt/development",
+    "forbiddenRepository": "rizaaltun/catpat-game",
+    "mainMergeRequiresExplicitUserApproval": true,
+    "deployRequiresExplicitUserApproval": true
+  },
+  "bookCanon": {
+    "source": "Çatpat Nezaketi Öğreniyor",
+    "registry": "qa/book-character-registry.json",
+    "primary": ["catpat"],
+    "verifiedCompanions": ["maymun", "porsuk", "pitpit"],
+    "verifiedSecondary": ["market_cashier", "tilki_queue"],
+    "replacementRequiredLegacy": ["baykus", "civciv"]
+  },
+  "storyEvents": [
+    {
+      "id": "branch-game",
+      "cast": ["catpat", "maymun", "porsuk"],
+      "bookEvidence": "Maymun and Porsuk play a branch game; Maymun politely invites Çatpat and the interaction is revisited in the reflection scene.",
+      "productionStatus": "planned-book-grounded"
+    },
+    {
+      "id": "pitpit-daisy-garden",
+      "cast": ["catpat", "pitpit"],
+      "bookEvidence": "Pıtpıt carefully selects daisies for their mother; Çatpat rushes through the garden and damages it; the reflection states he could have passed carefully.",
+      "productionStatus": "planned-book-grounded"
+    },
+    {
+      "id": "market-queue",
+      "cast": ["catpat", "market_cashier", "tilki_queue"],
+      "bookEvidence": "The market sequence includes a purple hippo cashier and queue context affected by Çatpat's behavior.",
+      "productionStatus": "planned-book-grounded"
+    },
+    {
+      "id": "festival-progression",
+      "cast": ["catpat", "maymun", "porsuk", "pitpit"],
+      "bookEvidence": "Festival progression is the game framing; final scene composition must use only book-verified characters and preserve book relationships.",
+      "productionStatus": "game-framing-pending-final-book-visual-check"
+    }
+  ],
+  "recoveryRuntime": {
+    "legacyMissionId": "pitpit-daisy-help",
+    "legacyMissionStatus": "recovery-only-not-canonical-final",
+    "legacyCollectibleCount": 12,
+    "note": "The v0.6 playable daisy route remains useful for movement and collision recovery QA, but it does not define the final book-canon mission structure."
   },
   "catpatAnimation": {
-    "run": {"frames": 8, "fps": 10},
-    "jump": ["start", "air", "fall", "land"],
-    "pivot": "visible-feet-bottom"
+    "canvas": [512, 640],
+    "pivot": [256, 620],
+    "leftDirection": "exact-runtime-horizontal-mirror",
+    "idle": {"requiredUniqueFrames": 8, "status": "replacement-required"},
+    "run": {"requiredUniqueFrames": 8, "status": "accepted-baseline-pending-book-visual-recheck"},
+    "jumpFallLand": {"status": "authored-production-required"},
+    "celebrateTalkReact": {"status": "authored-production-required"}
   },
-  "mission": {
-    "id": "pitpit-daisy-help",
-    "collectibles": 5,
-    "goal": "collect five daisies and reach route end"
+  "ui": {
+    "finalVisuals": "image-authored",
+    "codeResponsibilities": ["hitboxes", "layout mechanics", "runtime state", "physics", "animation state", "dynamic values"],
+    "codedFinishedPanelsForbidden": true
   },
   "qa": {
+    "transactional": true,
     "viewports": ["1280x720", "844x390"],
-    "pageErrors": 0,
-    "flow": "menu -> map -> comic -> game -> movement/jump -> pause"
+    "bookEventGate": "qa/book_event_gate.py",
+    "runtimeGate": "qa/v06_runtime_gate.py",
+    "routeGate": "qa/v06_route_gate.py"
   }
 }
